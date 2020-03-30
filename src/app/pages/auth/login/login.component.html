@@ -1,0 +1,50 @@
+<ion-content class="background-image">
+  <div class="first-block">
+    <ion-label style="font-size: 50px; color: #fff; font-family: cursive;">Welcome</ion-label>
+    <ion-label style="font-size: 20px; color: #fff; font-family: cursive;">Please login for great experiance</ion-label>
+  </div>
+  <ion-card class="content-card">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-input clearInput placeholder="Username" type="email" formControlName="username"></ion-input>
+        </ion-col>
+      </ion-row>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.username">
+          <div class="error-message"
+            *ngIf="loginForm.get('username').hasError(validation.type) && (loginForm.get('username').dirty || loginForm.get('username').touched)">
+            <ion-icon name="information-circle-outline" style="color:#FF0000"></ion-icon> <span style="color: #FF0000; margin-bottom: 4px;">{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+      <ion-row>
+        <ion-col size="12">
+          <ion-input clearInput placeholder="Password" type="password" formControlName="password"></ion-input>
+        </ion-col>
+      </ion-row>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.password">
+          <div class="error-message"
+            *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            <ion-icon name="information-circle-outline" style="color:#FF0000"></ion-icon> <span style="color: #FF0000; margin-bottom: 4px;">{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </ion-grid>
+    <ion-grid class="btn-button">
+      <ion-row>
+        <ion-col size="12">
+          <ion-button margin-right color="success" type="submit" [disabled]="loginForm.invalid">
+            SIGN IN
+          </ion-button>
+          <ion-button color="secondary" routerLink="/register">
+            SIGN UP
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  </ion-card>
+</ion-content>

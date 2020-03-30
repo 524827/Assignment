@@ -1,0 +1,68 @@
+
+<ion-content class="background-image">
+  <div>
+    <ion-icon name="arrow-back-outline" style="font-size: 30px; color:#fff;margin:10px" (click)="navigateBack()">
+    </ion-icon>
+  </div>
+  <div class="first-block">
+    <ion-label style="font-size: 50px; color: #fff; font-family: cursive;">Welcome</ion-label>
+    <ion-label style="font-size: 20px; color: #fff; font-family: cursive;">Please Make Your Registration</ion-label>
+  </div>
+  <ion-card class="content-card">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-input clearInput placeholder="Username" type="email" formControlName="username"></ion-input>
+        </ion-col>
+      </ion-row>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.username">
+          <div class="error-message"
+            *ngIf="registrationForm.get('username').hasError(validation.type) && (registrationForm.get('username').dirty || registrationForm.get('username').touched)">
+            <ion-icon name="information-circle-outline" style="color:#FF0000"></ion-icon> <span style="color: #FF0000; margin-bottom: 4px;">{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+      <ion-row>
+        <ion-col size="12">
+          <ion-input clearInput placeholder="Password" type="password" formControlName="password"></ion-input>
+        </ion-col>
+      </ion-row>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.password">
+          <div class="error-message"
+            *ngIf="registrationForm.get('password').hasError(validation.type) && (registrationForm.get('password').dirty || registrationForm.get('password').touched)">
+            <ion-icon name="information-circle-outline" style="color:#FF0000"></ion-icon> <span style="color: #FF0000; margin-bottom: 4px;">{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+      <ion-row>
+        <ion-col size="12">
+          <ion-input clearInput placeholder=" Confirm Password" type="password" formControlName="confirmPassword"></ion-input>
+        </ion-col>
+      </ion-row>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.confirmPassword">
+          <div class="error-message"
+            *ngIf="registrationForm.get('confirmPassword').hasError(validation.type) && (registrationForm.get('confirmPassword').dirty || registrationForm.get('confirmPassword').touched)">
+            <ion-icon name="information-circle-outline" style="color:#FF0000"></ion-icon> <span style="color: #FF0000; margin-bottom: 4px;">{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </ion-grid>
+    <ion-grid class="btn-button">
+      <ion-row>
+        <ion-col size="12">
+          <ion-button margin-right color="success" type="submit" [disabled]="registrationForm.invalid">
+            SIGN UP
+          </ion-button>
+          <ion-button color="danger">
+            CANCEL
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  </ion-card>
+</ion-content>
